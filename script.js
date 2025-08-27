@@ -1,4 +1,4 @@
-// count heart clicked
+// heart clicked count
 document.getElementById("card-box").addEventListener("click", function (e) {
   if (e.target.className.includes("card-heart")) {
     const count = document.getElementById("head-heart").innerText;
