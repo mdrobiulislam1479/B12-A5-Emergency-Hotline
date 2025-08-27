@@ -23,21 +23,23 @@ function currentTime() {
 }
 
 // call button clicked activities
-document.getElementById("call-btn").addEventListener("click", function () {
-  const coin = Number(document.getElementById("coin").innerText);
-  if (coin < 20) {
-    alert(
-      `❌ You don't have enough coins.You need at least 20 coins to make a call.`
-    );
-    return;
-  }
-  const title = document.getElementById("title").innerText;
-  const number = document.getElementById("number").innerText;
-  alert(`📞 Calling ${title} ${number}...`);
-  const currentCoin = coin - 20;
-  document.getElementById("coin").innerText = currentCoin;
-  const newDiv = document.createElement("div");
-  newDiv.innerHTML = `
+document.getElementById("card-box").addEventListener("click", function (e) {
+  if (e.target.className.includes("call-btn")) {
+    const callButton = e.target;
+    const coin = Number(document.getElementById("coin").innerText);
+    if (coin < 20) {
+      alert(
+        `❌ You don't have enough coins.You need at least 20 coins to make a call.`
+      );
+      return;
+    }
+    const title = callButton.parentNode.parentNode.children[1].innerText;
+    const number = callButton.parentNode.parentNode.children[3].innerText;
+    alert(`📞 Calling ${title} ${number}...`);
+    const currentCoin = coin - 20;
+    document.getElementById("coin").innerText = currentCoin;
+    const newDiv = document.createElement("div");
+    newDiv.innerHTML = `
           <div
             class="flex justify-between items-center p-4 bg-[#dfdcdc] rounded-lg mb-2"
           >
@@ -48,7 +50,8 @@ document.getElementById("call-btn").addEventListener("click", function () {
             <p class="text-[18px]">${currentTime()}</p>
           </div>
   `;
-  document.getElementById("history").appendChild(newDiv);
+    document.getElementById("history").appendChild(newDiv);
+  }
 });
 // clear button function
 document.getElementById("clear").addEventListener("click", function () {
@@ -56,11 +59,14 @@ document.getElementById("clear").addEventListener("click", function () {
   history.innerHTML = "";
 });
 // copy count and text copied
-document.getElementById("copy").addEventListener("click", function () {
-  const copy = document.getElementById("copy-count").innerText;
-  const number = document.getElementById("number").innerText;
-  navigator.clipboard.writeText(number);
-  alert(`Number copied : ${number}`);
-  const copyCount = Number(copy) + 1;
-  document.getElementById("copy-count").innerText = copyCount;
+document.getElementById("card-box").addEventListener("click", function (e) {
+  if (e.target.className.includes("copy-btn")) {
+    const copy = document.getElementById("copy-count").innerText;
+    const cartButton = e.target;
+    const number = cartButton.parentNode.parentNode.children[3].innerText;
+    navigator.clipboard.writeText(number);
+    alert(`Number copied : ${number}`);
+    const copyCount = Number(copy) + 1;
+    document.getElementById("copy-count").innerText = copyCount;
+  }
 });
