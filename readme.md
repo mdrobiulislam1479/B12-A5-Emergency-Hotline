@@ -14,11 +14,13 @@ Returns a static NodeList of all elements that match a css selector.
 
 2.How do you create and insert a new element into the DOM?
 
-step-1:
+---->> step-1:
 Use document.createElement("...") to create an element.
-step-2:
+
+---->> step-2:
 Modify its content or attributes.
-step-3:
+
+---->> step-3:
 use document.getElement...("...").appendChild(...) to insert an element.
 
 3.What is Event Bubbling and how does it work?
